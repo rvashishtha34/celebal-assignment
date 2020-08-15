@@ -1,0 +1,13 @@
+<h1>Account Number: {{ account.account_number }}</h1>
+<h1>Account Balance: {{ account.balance }}</h1>
+
+{% if message %}
+{{ message }}
+{% endif %}
+<br><br>
+<form method="post" action="{% url 'withdraw' %}">
+    {% csrf_token %}
+    <label>Amount to be deposited:</label>
+    <input type="number" name="withdraw_amt">
+    <input type="submit" value="withdraw">
+</form>

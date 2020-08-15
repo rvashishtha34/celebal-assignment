@@ -1,0 +1,9 @@
+<h1>Account Number: {{ account.account_number }}</h1>
+<h1>Account Balance: {{ account.balance }}</h1>
+
+<form method="post" action="{% url 'deposit' %}">
+    {% csrf_token %}
+    <label>Amount to be deposited:</label>
+    <input type="number" name="deposit_amt">
+    <input type="submit" value="deposit">
+</form>

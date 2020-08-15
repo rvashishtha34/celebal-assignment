@@ -1,0 +1,19 @@
+<h1>Hello {{ user|title }}</h1>
+{% if account %}
+<h3>Account No.: {{ account.account_number }}</h3>
+<h3>Balance: Rs. {{ account.balance }}</h3>
+
+<button type="button" onclick="location.href='{% url 'deposit' %}'">Deposit</button>
+<button type="button" onclick="location.href='{% url 'withdraw' %}'">Withdraw</button>
+<button type="button" onclick="location.href='{% url 'transactions' %}'">Transaction Details</button>
+{% else %}
+<h2>Please enter your Account Number:</h2>
+<form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    <input type="number" name="acc_no">
+    <input type="submit" value="Submit">
+</form>
+{% endif %}
+<br><br>
+<button type="button" onclick="location.href='{% url 'logout' %}'">Logout</button>
+

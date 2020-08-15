@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+</style>
+</head>
+<body>
+<h2 style="text-align: center">Transaction Details</h2>
+<h3 style="text-align:left;">
+    Name of Account Holder: {{ account.user.first_name }} {{ account.user.last_name }}
+    <span style="float:right;">
+        <button type="button" onclick="location.href='{% url 'export_users_xls' %}'">Export to Excel</button>
+    </span>
+</h3>
+<table style="width: 100%;">
+    <tr>
+        <th>Account Number</th>
+        <th>Balance</th>
+        <th>Updated Balance</th>
+        <th>Deposit</th>
+        <th>Withdrawn</th>
+        <th>Time</th>
+    </tr>
+    {% for transaction in account.transactions.all %}
+    <tr>
+        <td>{{ transaction.account }}</td>
+        <td>{{ transaction.balance }}</td>
+        <td>{{ transaction.updated_balance }}</td>
+        <td>{{ transaction.deposit }}</td>
+        <td>{{ transaction.withdrawn }}</td>
+        <td>{{ transaction.time }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
